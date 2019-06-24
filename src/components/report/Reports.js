@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import api from "../../services/api"
 import Report from './Report'
 
 class reports extends React.Component{
@@ -7,14 +7,14 @@ class reports extends React.Component{
     i=0;
 
     async componentDidMount() {
-        const response = await axios.get('http://localhost:5000/reports');
+        const response = await api.get('http://localhost:5000/reports');
         this.setState({reports:response.data});
     }
 
     createReport= (report) => {
         let key="report"+this.i.toString();
         this.i+=1;
-        return <div key={key}><Report report={report} key={report.id}/></div>
+        return <div key={key}><Report report={report} key={report.id} link={'/report/details/'+report.id}/></div>
     };
 
     renderReports= () => {

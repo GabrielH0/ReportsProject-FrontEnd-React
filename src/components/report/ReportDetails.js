@@ -7,7 +7,6 @@ class ReportDetail extends React.Component{
     async componentDidMount() {
         const { match:{params}} = this.props;
 
-        console.log(params.id)
 
         const response = await axios.get('http://localhost:5000/report/'+params.id);
         this.setState({report:response.data[0]});
